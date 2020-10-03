@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-<title>Couterer</title>
+<title>Contourer</title>
 <script>
 circ = [];
 activeCirc = -1;
@@ -186,10 +186,26 @@ function omm(e) {
 
 window.onload = function() {
 document.addEventListener("keydown", keyDown);
+document.querySelector("#help").addEventListener("click", function() {
+    alert(`This is help for contourer.\n\n
+   First, load the image for contouring.\n
+   Press "C" or "Shift+C" to add ellipse of rectangle.\n
+   Use "X", "Shift+X", "Y", and "Shift+Y" to move it.\n
+   Use "R" and "Shift+R" to rotate it.\n
+   Use "A", "Shift+A", "B", "Shift+B" to change it's size (vertical and horizontal)\n
+   Use "O" and "P" to pick color of the pixel of the image under the cursor and use it for "fill" or "stroke" attribute of current figure.\n
+   To start polygon creation press "S".\n
+   Use "V" to add vertex, "U" to undo the last vertex.\n
+   Keys "O" and "P" work the same. Don't warry that color of lines is black. They will take the proper color.\n
+   Press "S" to end polygon creation.\n
+   You can copy the result from the text area below the image.\n
+   There is no way to change the previous figure after adding a new one.\n
+     `);
+});
 document.querySelector("#svgOut").onblur = function(ev) {
     document.querySelector("#svg").innerHTML = document.querySelector("#svgOut").value;
 };
-document.getElementById("picField").onchange = function (evt) {
+document.querySelector("#picField").onchange = function (evt) {
     var tgt = evt.target || window.event.srcElement,
         files = tgt.files;
 
@@ -235,9 +251,9 @@ document.getElementById("picField").onchange = function (evt) {
 </head>
 <body>
 <div>
-<svg id="svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800" height="800" onmousemove="omm(evt)">
+<svg id="svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" onmousemove="omm(evt)">
 </svg></div>
-<input type="file" id="picField">
+<input type="file" id="picField"><input type="button" id="help" value="Help!">
 <img id="outImage">
 <br>
 <textarea id="svgOut" cols="100" rows="100"></textarea>
