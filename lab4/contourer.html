@@ -1,0 +1,245 @@
+<!doctype html>
+<html>
+<head>
+<title>Couterer</title>
+<script>
+circ = [];
+activeCirc = -1;
+
+mx = 0;
+my = 0;
+
+xspawn = 0;
+yspawn = 0;
+
+canvas = undefined;
+
+polys = []
+polyProg = false;
+polyColor = "#000000";
+polyStrokeColor = "#000000";
+
+function getD(circ) {
+    return `M${circ.sx},${circ.sy}
+            a${circ.a},${circ.b} ${circ.alpha} 1,0 ${Math.cos(circ.alpha / 180 * Math.PI) * circ.a * 2},${Math.sin(circ.alpha / 180 * Math.PI) * circ.a * 2}
+            a${circ.a},${circ.b} ${circ.alpha} 1,0 ${-Math.cos(circ.alpha / 180 * Math.PI) * circ.a * 2},${-Math.sin(circ.alpha / 180 * Math.PI) * circ.a * 2}z`;
+}
+
+function addCircleOld(sx, sy, a, b, alpha) {
+    tmp = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    tmp.setAttribute("id", `c${cCnt++}`);
+    circ.push({"sx": sx, "sy": sy, "a": a, "b": b, "alpha": alpha, "color": "#0000ff"});
+    activeCirc = cCnt - 1;
+    tmp.setAttribute("fill", "#0000ff");
+    tmp.setAttribute("d", getD(circ[activeCirc]));
+    document.querySelector("#svg").appendChild(tmp);
+}
+
+function getTransform(circ) {
+        return `translate(${circ.x}, ${circ.y}) rotate(${circ.alpha})`;
+}
+
+function addCircle(type = "ellipse") {
+    tmp = document.createElementNS("http://www.w3.org/2000/svg", type);
+    tmp.setAttribute("id", `c${circ.length}`);
+    activeCirc = circ.length;
+    circ.push({"x": xspawn, "y": yspawn, "a": 100, "b": 50, "alpha": 0, "color": "#0000ff", "fill-opacity": 0.5, "stroke": "#000000","id": tmp.getAttribute("id"), "type": type});
+    document.querySelector("#svg").appendChild(tmp);
+    updateCircle(circ[activeCirc]);
+}
+
+function updateCircle(ccirc) {
+    tmp = document.querySelector("#" + ccirc.id);
+    tmp.setAttribute("transform", getTransform(ccirc));
+    if (ccirc.type == "rect") {
+        tmp.setAttribute("width", ccirc.a);
+        tmp.setAttribute("height", ccirc.b);
+    } else {
+        tmp.setAttribute("rx", ccirc.a);
+        tmp.setAttribute("ry", ccirc.b);
+    }
+    tmp.setAttribute("fill", ccirc.color);
+    tmp.setAttribute("stroke", ccirc.stroke);
+    tmp.setAttribute("fill-opacity", ccirc["fill-opacity"]);
+    document.querySelector("#svgOut").value = document.querySelector("#svg").innerHTML;
+}
+
+function removeLines(n) {
+    for (var i = 1; i <= n; ++i) {
+        removeLine(i);
+    }
+}
+
+function addLine(n, p1, p2) {
+    line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    line.setAttribute("id", "line" + n);
+    line.setAttribute("stroke", "black");
+    line.setAttribute("x1", p1[0]);
+    line.setAttribute("y1", p1[1]);
+    line.setAttribute("x2", p2[0]);
+    line.setAttribute("y2", p2[1]);
+    document.querySelector("#svg").appendChild(line);
+}
+
+function removeLine(n) {
+    console.log(n);
+    line = document.querySelector("#line" + n);
+    document.querySelector("#svg").removeChild(line);
+}
+
+function addPoly(verts) {
+    poly = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+    poly.setAttribute("id", "p" + (polys.length - 1));
+    points = "";
+    for (var i = 0; i < verts.length; ++i) {
+        points += `${verts[i][0]},${verts[i][1]} `
+    }
+    poly.setAttribute("points", points);
+    poly.setAttribute("fill", polyColor);
+    poly.setAttribute("stroke", polyStrokeColor);
+    document.querySelector("#svg").appendChild(poly);
+}
+
+function keyDown(e) {
+    if (e.code == "KeyyC") {
+        activeCirc += (e.shiftKey) ? -1 : 1;
+        if (activeCirc < 0) {
+            activeCirc = 0;
+        } else if (activeCirc >= circ.length) {
+            activeCirc = circ.length;
+            addCircle();
+        }
+        for (var i = 0; i < circ.length; ++i) {
+            circ[i]["fill-opacity"] = 1;
+            updateCircle(circ[i]);
+        }
+        circ[activeCirc]["fill-opacity"] = 0.5;
+        updateCircle(circ[activeCirc]);
+    } else if (e.code == "KeyC") {
+        activeCirc++;
+        if (e.shiftKey) {
+            addCircle("rect");
+        } else {
+            addCircle();
+        }
+    } else if (e.code == "KeyS") {
+        if (polyProg) {
+            addPoly(polys[polys.length - 1]);
+            removeLines(polys[polys.length - 1].length - 1);
+            polyProg = false;
+            return;
+        }
+        polyProg = true;
+        polys.push([]);
+    } else if (e.code == "KeyV") {
+        if (polyProg) {
+            polys[polys.length - 1].push([mx, my]);
+            if (polys[polys.length - 1].length > 1) {
+                addLine(polys[polys.length - 1].length - 1, polys[polys.length - 1][polys[polys.length - 1].length - 2], polys[polys.length - 1][polys[polys.length - 1].length - 1]);
+            }
+        }
+    } else if (e.code == "KeyU") {
+        if (polyProg) {
+            polys[polys.length - 1].length--;
+            removeLine(polys[polys.length - 1].length);
+        }
+    } else if (e.code == "KeyR") {
+        circ[activeCirc].alpha += (e.shiftKey) ? 1 : -1;
+        updateCircle(circ[activeCirc]);
+    } else if (e.code == "KeyX") {
+        circ[activeCirc].x += (e.shiftKey) ? -1 : 1;
+        updateCircle(circ[activeCirc]);
+    } else if (e.code == "KeyY") {
+        circ[activeCirc].y += (e.shiftKey) ? -1 : 1;
+        updateCircle(circ[activeCirc]);
+    } else if (e.code == "KeyA") {
+        circ[activeCirc].a += (e.shiftKey) ? -1 : 1;
+        updateCircle(circ[activeCirc]);
+    } else if (e.code == "KeyB") {
+        circ[activeCirc].b += (e.shiftKey) ? -1 : 1;
+        updateCircle(circ[activeCirc]);
+    } else if (e.code == "KeyP") {
+        color = canvas.getContext('2d').getImageData(mx, my, 1, 1).data;
+        color = "rgb(" + color[0] + "," + color[1] + "," + color[2] + ")";
+        if (polyProg) {
+            polyColor = color;
+        } else {
+            circ[activeCirc].color = color;
+            updateCircle(circ[activeCirc]);
+        }
+    } else if (e.code == "KeyO") {
+        color = canvas.getContext('2d').getImageData(mx, my, 1, 1).data;
+        color = "rgb(" + color[0] + "," + color[1] + "," + color[2] + ")";
+        if (polyProg) {
+            polyStrokeColor = color;
+        } else {
+            circ[activeCirc].stroke = color;
+            updateCircle(circ[activeCirc]);
+        }
+    }
+}
+
+function omm(e) {
+    mx = e.pageX - e.target.parentNode.parentNode.offsetLeft;
+    my = e.pageY - e.target.parentNode.parentNode.offsetTop;
+}
+
+window.onload = function() {
+document.addEventListener("keydown", keyDown);
+document.querySelector("#svgOut").onblur = function(ev) {
+    document.querySelector("#svg").innerHTML = document.querySelector("#svgOut").value;
+};
+document.getElementById("picField").onchange = function (evt) {
+    var tgt = evt.target || window.event.srcElement,
+        files = tgt.files;
+
+    // FileReader support
+    if (FileReader && files && files.length) {
+        var fr = new FileReader();
+        fr.onload = function () {
+            img = document.querySelector("#outImage")
+            img.src = fr.result;
+            img.onload = function () {
+                console.log(img.clientHeight);
+                svg = document.querySelector("#svg")
+                svg.setAttribute("height", img.clientHeight);
+                svg.setAttribute("width", img.clientWidth);
+                svg.setAttribute("viewBox", `0 0 ${img.clientWidth} ${img.clientHeight}`);
+                image = document.createElementNS("http://www.w3.org/2000/svg", "image");
+                image.setAttribute("id", "bgImage");
+                image.setAttribute("href", img.src);
+                image.setAttribute("x", "0");
+                image.setAttribute("y", "0");
+                image.setAttribute("width", img.clientWidth);
+                image.setAttribute("height", img.clientHeight);
+                xspawn = Math.floor(img.clientWidth / 2);
+                yspawn = Math.floor(img.clientHeight / 2);
+                svg.appendChild(image);
+                canvas = document.createElement("canvas");
+                canvas.width = img.clientWidth;
+                canvas.height = img.clientHeight;
+                canvas.getContext("2d").drawImage(img, 0, 0, img.clientWidth, img.clientHeight);
+                img.setAttribute("style", "display: none;");
+            }
+        }
+        fr.readAsDataURL(files[0]);
+    }
+
+    // Not supported
+    else {
+        cosole.log("Not supported");
+    }
+}
+}
+</script>
+</head>
+<body>
+<div>
+<svg id="svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800" height="800" onmousemove="omm(evt)">
+</svg></div>
+<input type="file" id="picField">
+<img id="outImage">
+<br>
+<textarea id="svgOut" cols="100" rows="100"></textarea>
+</body>
+</html>
