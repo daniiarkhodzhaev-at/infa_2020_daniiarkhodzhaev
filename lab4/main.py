@@ -28,9 +28,7 @@ def loadImage(fname: str) -> int:
 
 def drawSvg() -> int:
     '''
-    This function draws svg in several steps.
-    First it loads svg, then converts to bitmap
-    and then push it to screen
+    This function draws image on the screen
     @return Exit code
     '''
     global WIDTH, HEIGHT, screen, image
