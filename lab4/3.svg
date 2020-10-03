@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="794" height="1123" viewBox="0 0 794 1123">
+<defs>
+<radialGradient id="sun" gradientUnits="userSpaceOnUse" cx="622" cy="172" r="270" fx="622" fy="172" fr="2">
+<stop offset="0%" stop-color="rgb(255,221,85)"></stop>
+<stop offset="100%" stop-color="rgb(0,255,255)"></stop>
+</radialGradient>
+<g id="sky">
+<rect id="c0" transform="translate(0, 0) rotate(0)" width="794" height="513" fill="url(#sun)" stroke="none"></rect>
+</g>
+<g id="grass">
+<rect id="c1" transform="translate(0, 513) rotate(0)" width="794" height="610" fill="rgb(0,255,0)" stroke="rgb(0,255,0)"></rect>
+</g>
+<g id="stem">
+<rect id="c0" transform="translate(101, 610) rotate(0)" width="48" height="170" fill="rgb(230,230,230)" stroke="rgb(230,230,230)"></rect>
+</g>
+<g id="leaves">
+<ellipse id="c3" transform="translate(126, 302) rotate(0)" rx="111" ry="133" fill="rgb(0,128,0)"></ellipse>
+<ellipse id="c2" transform="translate(135, 429) rotate(0)" rx="187" ry="98" fill="rgb(0,128,0)"></ellipse>
+<ellipse id="c1" transform="translate(131, 566) rotate(0)" rx="112" ry="89" fill="rgb(0,128,0)"></ellipse>
+</g>
+<g id="red-dots">
+<ellipse id="c4" transform="translate(167, 240) rotate(0)" rx="29" ry="25" fill="rgb(255,204,170)"></ellipse>
+<ellipse id="c5" transform="translate(273, 441) rotate(0)" rx="29" ry="25" fill="rgb(255,204,170)"></ellipse>
+<ellipse id="c6" transform="translate(192, 616) rotate(0)" rx="27" ry="27" fill="rgb(255,204,170)"></ellipse>
+<ellipse id="c7" transform="translate(0, 437) rotate(0)" rx="33" ry="27" fill="rgb(255,204,170)"></ellipse>
+</g>
+<g id="mane">
+<ellipse id="c1" transform="translate(568, 638) rotate(0)" rx="33" ry="9" fill="rgb(233,175,175)" stroke="rgb(233,175,175)"></ellipse>
+<ellipse id="c2" transform="translate(543, 662) rotate(0)" rx="31" ry="21" fill="rgb(233,198,175)" stroke="rgb(233,198,175)"></ellipse>
+<ellipse id="c5" transform="translate(574, 728) rotate(0)" rx="41" ry="15" fill="rgb(229,255,128)" stroke="rgb(229,255,128)"></ellipse>
+<ellipse id="c6" transform="translate(558, 705) rotate(0)" rx="34" ry="13" fill="rgb(233,198,175)" stroke="rgb(233,198,175)"></ellipse>
+<ellipse id="c7" transform="translate(533, 686) rotate(0)" rx="43" ry="16" fill="rgb(255,238,170)" stroke="rgb(255,238,170)"></ellipse>
+<ellipse id="c8" transform="translate(518, 716) rotate(0)" rx="30" ry="7" fill="rgb(255,238,170)" stroke="rgb(255,238,170)"></ellipse>
+<ellipse id="c9" transform="translate(510, 700) rotate(0)" rx="32" ry="10" fill="rgb(229,255,128)" stroke="rgb(229,255,128)"></ellipse>
+<ellipse id="c10" transform="translate(542, 732) rotate(0)" rx="36" ry="10" fill="rgb(244,215,227)" stroke="rgb(244,215,227)"></ellipse>
+<ellipse id="c11" transform="translate(503, 737) rotate(0)" rx="30" ry="9" fill="rgb(175,233,221)" stroke="rgb(175,233,221)"></ellipse>
+<ellipse id="c12" transform="translate(496, 723) rotate(0)" rx="24" ry="6" fill="rgb(175,233,221)" stroke="rgb(175,233,221)"></ellipse>
+<ellipse id="c13" transform="translate(543, 745) rotate(0)" rx="34" ry="11" fill="rgb(244,215,227)" stroke="rgb(244,215,227)"></ellipse>
+<ellipse id="c14" transform="translate(569, 744) rotate(0)" rx="30" ry="11" fill="rgb(175,233,221)" stroke="rgb(175,233,221)"></ellipse>
+<ellipse id="c15" transform="translate(489, 754) rotate(0)" rx="42" ry="10" fill="rgb(221,175,233)" stroke="rgb(221,175,233)"></ellipse>
+</g>
+<g id="tail">
+<use xlink:href="#mane" transform="matrix(-1,0,0,1,867,200)"></use>
+<use xlink:href="#mane" transform="translate(-196,146)"></use>
+</g>
+<g id="body">
+<g id="legs">
+<rect id="c0" transform="translate(393, 843) rotate(0)" width="24" height="137" fill="rgb(255,255,255)" stroke="rgb(255,255,255)"></rect>
+<rect id="c1" transform="translate(453, 866) rotate(0)" width="29" height="98" fill="rgb(255,255,255)" stroke="rgb(255,255,255)"></rect>
+<rect id="c2" transform="translate(562, 860) rotate(0)" width="28" height="130" fill="rgb(255,255,255)" stroke="rgb(255,255,255)"></rect>
+<rect id="c3" transform="translate(625, 842) rotate(0)" width="22" height="113" fill="rgb(255,255,255)" stroke="rgb(255,255,255)"></rect>
+</g>
+<g id="main">
+<ellipse id="c4" transform="translate(520, 814) rotate(0)" rx="153" ry="66" fill="rgb(255,255,255)" stroke="rgb(255,255,255)"></ellipse>
+</g>
+<g id="neck">
+<rect id="c5" transform="translate(555, 659) rotate(0)" width="100" height="151" fill="rgb(255,255,255)" stroke="rgb(255,255,255)"></rect>
+</g>
+<g id="face">
+<ellipse id="c6" transform="translate(619, 654) rotate(0)" rx="55" ry="34" fill="rgb(255,255,255)" stroke="rgb(255,255,255)"></ellipse>
+<ellipse id="c7" transform="translate(671, 668) rotate(0)" rx="51" ry="24" fill="rgb(255,255,255)" stroke="rgb(255,255,255)"></ellipse>
+</g>
+</g>
+<g id="eye">
+<ellipse id="c0" transform="translate(640, 655) rotate(0)" rx="14" ry="12" fill="rgb(229,128,255)" stroke="rgb(229,128,255)"></ellipse>
+<ellipse id="c1" transform="translate(646, 655) rotate(0)" rx="5" ry="5" fill="rgb(34,28,36)" stroke="rgb(34,28,36)"></ellipse>
+<ellipse id="c2" transform="translate(639, 650) rotate(32)" rx="7" ry="2" fill="rgb(255,255,255)" stroke="rgb(255,255,255)"></ellipse>
+</g>
+<g id="horn">
+<ellipse id="c0" transform="translate(571, 654) rotate(0)" rx="40" ry="15" fill="rgb(233,198,175)" stroke="rgb(233,198,175)"></ellipse>
+<polygon id="p0" points="635,624 634,497 606,609 623,622 " fill="rgb(233,175,175)" stroke="rgb(233,175,175)"></polygon>
+<ellipse id="c0" transform="translate(597, 620) rotate(0)" rx="26" ry="14" fill="rgb(233,175,175)" stroke="rgb(233,175,175)"></ellipse>
+</g>
+<g id="tree">
+<use xlink:href="#stem"></use>
+<use xlink:href="#leaves" stroke-width="3" stroke="rgb(0,255,0)"></use>
+<use xlink:href="#red-dots" stroke-width="3" stroke="rgb(0,255,0)"></use>
+</g>
+<g id="horse">
+<use xlink:href="#tail"></use>
+<use xlink:href="#body"></use>
+<use xlink:href="#horn"></use>
+<use xlink:href="#mane"></use>
+<use xlink:href="#eye"></use>
+</g>
+</defs>
+<g id="background">
+<use xlink:href="#sky"></use>
+<use xlink:href="#grass"></use>
+</g>
+<g id="trees">
+<use xlink:href="#tree" transform="matrix(1.05882,0,0,0.94898,92.05882,-150.11224)"></use>
+<use xlink:href="#tree" transform="matrix(0.71123,0,0,0.41837,194.98396,327.52041)"></use>
+<use xlink:href="#tree" transform="matrix(0.59893,0,0,0.95918,-23.85561,30.51020)"></use>
+<use xlink:href="#tree" transform="matrix(0.67380,0,0,0.62245,99.03743,386.96939)"></use>
+<use xlink:href="#tree" transform="matrix(0.66310,0,0,0.63265,-0.51872,574.59184)"></use>
+</g>
+<g id="horses">
+<use xlink:href="#horse" transform="matrix(0.86275,0,0,0.87879,-24.62745,199.66667)"></use>
+<use xlink:href="#horse" transform="matrix(-0.66013,0,0,0.66667,1041.26797,209.33333)"></use>
+<use xlink:href="#horse" transform="matrix(0.42484,0,0,0.42424,271.08497,217.66667)"></use>
+<use xlink:href="#horse" transform="matrix(-0.20915,0,0,0.21212,835.75817,337.33333)"></use>
+</g>
+</svg>
