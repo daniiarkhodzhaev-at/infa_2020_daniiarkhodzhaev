@@ -7,3 +7,6 @@
 [submodule "lab3"]
 	path = lab3
 	url = git@github.com:daniiarkhodzhaev-at/lab3.git
+[submodule "lab6"]
+	path = lab6
+	url = https://github.com/daniiarkhodzhaev-at/lab6
